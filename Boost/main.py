@@ -18,15 +18,37 @@ user_option = int(input("Digite a opção: "))
 
 while user_option != 3:
 
+    files_counter = 0
+
     if user_option == 1:
-        user_option_arquivos = int(input("\n1 - Prefetch\n2 - Temp\n3 - %temp%\n4 - Voltar\nDigite a opção: "))
+        user_option_arquivos = int(input("\n0 - Tudo\n1 - Prefetch\n2 - Temp\n3 - %temp%\n4 - Voltar\nDigite a opção: "))
+
+        # Tudo
+        if user_option_arquivos == 0:
+            try:
+                for file in os.listdir("C:\\Windows\\Prefetch"):
+                    print(f'Apagando arquivo: {file}')
+                    os.system(f'gsudo del C:\\Windows\\Prefetch\\{file}')
+                    files_counter += 1
+                for file in os.listdir("C:\\Windows\\Temp"):
+                    print(f'Apagando arquivo: {file}')
+                    os.system(f'gsudo del C:\\Windows\\Temp\\{file}')
+                    files_counter += 1
+                for file in os.listdir(f'C:\\Users\\{username}\\AppData\\Local\\Temp'):
+                    print(f'Apagando arquivo: {file}')
+                    os.system(f'gsudo del C:\\Users\\{username}\\AppData\\Local\\Temp\\{file}')
+                    files_counter += 1
+                print(f'\033[92m{files_counter} arquivos apagados com sucesso!\033[m')
+                break
+            except Exception as error:
+                print(f'\033[91mErro: {error}\033[m')
 
         # Prefetch
         if user_option_arquivos == 1:
             try:
                 for file in os.listdir("C:\\Windows\\Prefetch"):
                     print(f'Apagando arquivo: {file}')
-                    os.system(f'del C:\\Windows\\Prefetch\\{file}')
+                    os.system(f'gsudo del C:\\Windows\\Prefetch\\{file}')
                     files_counter += 1
                 print(f'\033[92m{files_counter} arquivos apagados com sucesso!\033[m')
                 break
@@ -38,7 +60,7 @@ while user_option != 3:
             try:
                 for file in os.listdir("C:\\Windows\\Temp"):
                     print(f'Apagando arquivo: {file}')
-                    os.system(f'del C:\\Windows\\Temp\\{file}')
+                    os.system(f'gsudo del C:\\Windows\\Temp\\{file}')
                     files_counter += 1
                 print(f'\033[92m{files_counter} arquivos apagados com sucesso!\033[m')
                 break
@@ -50,7 +72,7 @@ while user_option != 3:
             try:
                 for file in os.listdir(f'C:\\Users\\{username}\\AppData\\Local\\Temp'):
                     print(f'Apagando arquivo: {file}')
-                    os.system(f'del C:\\Users\\{username}\\AppData\\Local\\Temp\\{file}')
+                    os.system(f'gsudo del C:\\Users\\{username}\\AppData\\Local\\Temp\\{file}')
                     files_counter += 1
                 print(f'\033[92m{files_counter} arquivos apagados com sucesso!\033[m')
                 break
