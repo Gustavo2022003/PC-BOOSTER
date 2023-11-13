@@ -28,7 +28,7 @@ def main():
     elif user_input == 3:
         print("\n\033[92mInformações do sistema:\033[m")
         os.system("systeminfo")
-        input("\n\033[35mAperte ENTER para continuar...\033[m")
+        input("\n\033[35mAperte ENTER para continuar...\033[m")                      
     elif user_input == 4:
         desligar_suspender()
     elif user_input == 5:
